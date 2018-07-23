@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+#import numpy as np
 import rpy2.robjects as ro
 #from rpy2.robjects import numpy2ri
 from rpy2.robjects import pandas2ri
@@ -10,12 +10,12 @@ class R:
         self.r = ro.r
         #numpy2ri.activate()
         pandas2ri.activate()
-        multcomp = importr('multcomp')
+        multcomp = importr("multcomp")
         self.anova_results = {}
         self.data_columns = []
         self.tukeyhsd_results = []
         
-    def inport_csv(self,csv_path=""):
+    def import_csv(self,csv_path=""):
         self.csv_path = csv_path
         try:
             self.p_df = pd.read_csv(self.csv_path)
