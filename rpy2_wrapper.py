@@ -14,7 +14,6 @@ class R:
         self.NSM3 = importr("NSM3")
         self.anova_results = {}
         self.oneway_results = {}
-        self.data_columns = []
         self.tukeyhsd_results = []
         self.dunnett_results = []
         
@@ -23,17 +22,27 @@ class R:
         try:
             self.p_df = pd.read_csv(self.csv_path,header=header,index_col=index_col)
             self.r_df = pandas2ri.py2ri(self.p_df)
-            print("succeed")
+            self.colnames = np.array(self.r_df.names).tolist()
+            print("column names:")
+            print(self.colnames)
+            print("Import was succeeded")
         except:
-            print("failed")
-        
-    def savemode(self,save_file=""):
+            print("Import was failed")
+            
+    def _savemode(self,save_file=""):
         if len(save_file)!=0:
             self.save_file = save_file
             return True
         else:
             return False
-       
+        
+    def _preprocessing(self,data_column="",label_column="",save_file=""):
+        label_data = ro.FactorVector(self.r_df.rx2(label_column))
+        data = self.r_df.rx2(data_column)
+        lm_name = f"{data_column} ~ label_data"
+        save_mode = self._savemode(save_file=save_file)
+        return label_data, data, lm_name, save_mode
+        
     def print_func(self,result,save_mode):        
         if save_mode:
             with open(self.save_file,"a") as f:
@@ -42,79 +51,66 @@ class R:
             print(*result)
     
     def aov(self,data_column="",label_column="",save_file=""):
-        save_mode = self.savemode(save_file=save_file)
-        self.data_column = data_column
-        self.label_column = label_column
-        label_data = ro.FactorVector(self.r_df.rx2(self.label_column))
+        label_data, data, lm_name, save_mode = self._preprocessing(data_column=data_column,
+                                                                   label_column=label_column,
+                                                                   save_file=save_file)
         ro.globalenv["label_data"] = label_data
-        ro.globalenv[self.data_column] = self.r_df.rx2(self.data_column)
+        ro.globalenv[data_column] = data
 
-        try:
-            lm_name = "{} ~ label_data".format(self.data_column)
-            lm_D = self.r.lm(lm_name)
-            self.anova_result = self.r.aov(lm_D)
-            self.anova_results[self.data_column]= self.anova_result
-            result = ["-------------Result of ANOVA-------------\n",
-                     self.r.anova(self.anova_result)]
-            self.print_func(result,save_mode)
-        except:
-            print("failed")
+        lm_D = self.r.lm(lm_name)
+        anova_result = self.r.aov(lm_D)
+        self.anova_results[data_column]= anova_result
+        result = ["-------------Result of ANOVA-------------\n",
+                 self.r.anova(anova_result)]
+        self.print_func(result,save_mode)
+            
+        return anova_result, label_data, data, lm_name, save_mode
     
     def oneway(self,data_column="",label_column="",var=False,save_file=""):
-        save_mode = self.savemode(save_file=save_file)
-        self.data_column = data_column
-        self.label_column = label_column
-        label_data = ro.FactorVector(self.r_df.rx2(self.label_column))
+        label_data, data, lm_name, save_mode = self._preprocessing(data_column=data_column,
+                                                                   label_column=label_column,
+                                                                   save_file=save_file)
         ro.globalenv["label_data"] = label_data
-        ro.globalenv[self.data_column] = self.r_df.rx2(self.data_column)
+        ro.globalenv[data_column] = data
 
-        try:
-            lm_name = "{} ~ label_data".format(self.data_column)
-            fmla = ro.Formula(lm_name)
-            onewayf = self.r("oneway.test")
-            self.oneway_result = onewayf(fmla,**{"var.equal":var})
-            self.oneway_results[self.data_column]= self.oneway_result
-            result = ["-------------Result of Welch's ANOVA-------------\n",
-                      self.oneway_result]
-            self.print_func(result,save_mode)
-        except:
-            print("failed")
+        fmla = ro.Formula(lm_name)
+        onewayf = self.r("oneway.test")
+        self.oneway_result = onewayf(fmla,**{"var.equal":var})
+        self.oneway_results[data_column]= self.oneway_result
+        result = ["-------------Result of Welch's ANOVA-------------\n",
+                  self.oneway_result]
+        self.print_func(result,save_mode)
             
     def tukeyHSD(self,data_column="",label_column="",save_file=""):
-        save_mode = self.savemode(save_file=save_file)
-        self.aov(data_column=data_column,label_column=label_column,save_file=save_file)
-        self.anova_result = self.anova_results[self.data_column]
-        self.tukeyhsd_result = self.r.TukeyHSD(self.anova_result)
+        anova_result, label_data, data, lm_name, save_mode = self.aov(data_column=data_column,
+                                                                      label_column=label_column,
+                                                                      save_file=save_file)
+        self.tukeyhsd_result = self.r.TukeyHSD(anova_result)
         self.tukeyhsd_results.append(self.tukeyhsd_result[0])
         result = ["-------------Result of TukeyHSD test-------------\n\n",
                   self.tukeyhsd_result[0]]
         self.print_func(result,save_mode)
         
     def dunnett_test(self,data_column="",label_column="",save_file=""):
-        save_mode = self.savemode(save_file=save_file)
-        self.data_column = data_column
-        self.label_column = label_column
-        data = self.r_df.rx2(self.data_column)
-        label_data = ro.FactorVector(self.r_df.rx2(self.label_column))
-
-        self.aov(data_column=data_column,label_column=label_column,save_file=save_file)
-        self.anova_result = self.anova_results[self.data_column]
+        anova_result, label_data, data, lm_name, save_mode = self.aov(data_column=data_column,
+                                                                      label_column=label_column,
+                                                                      save_file=save_file)
         
         dunnett = self.r.mcp(label_data="Dunnett")
-        self.dunnett_result = self.r.glht(self.anova_result, linfct=dunnett)
-        self.dunnett_results.append(self.dunnett_result)
-        self.result = (self.r.summary(self.dunnett_result))
+        dunnett_result = self.r.glht(anova_result, linfct=dunnett)
+        self.dunnett_results.append(dunnett_result)
+        dunnett_result_summary = (self.r.summary(dunnett_result))
         names = self.r("names")
-        columns = np.array(names(self.result[-1][2]))
-        self.result_df = pd.DataFrame([np.array(i) for i in self.result[-1][2:-1]],
+        columns = np.array(names(dunnett_result_summary[-1][2]))
+        dunnett_result_summary_df = pd.DataFrame([np.array(i) for i in dunnett_result_summary[-1][2:-1]],
                                       index=["Estimate","Std. Error", "t value", "Pr(>|t|)"],
                                       columns=columns)
         result = ["-------------Result of Dunnett's test-------------\n\n",
-                  self.result_df.T,"\n"]
+                  dunnett_result_summary_df.T,"\n"]
         self.print_func(result,save_mode)
 
     def fisher_test(self,save_file=""):
-        save_mode = self.savemode(save_file=save_file)
+        save_mode = self._savemode(save_file=save_file)
         data_to_matrix = self.r("data.matrix")
         matrix = data_to_matrix(self.r_df)
         fisher = self.r("fisher.test")
@@ -123,11 +119,9 @@ class R:
         self.print_func(result,save_mode)
         
     def steeldwass(self,data_column="",label_column="",save_file=""):
-        save_mode = self.savemode(save_file=save_file)
-        self.data_column = data_column
-        self.label_column = label_column
-        data = self.r_df.rx2(self.data_column)
-        label_data = ro.FactorVector(self.r_df.rx2(self.label_column))
+        label_data, data, lm_name, save_mode = self._preprocessing(data_column=data_column,
+                                                                   label_column=label_column,
+                                                                   save_file=save_file)
         result = ["-------------Result of Steel-Dwass test-------------\n\n",
                   self.r.pSDCFlig(data, label_data, method="Monte Carlo")]
         self.print_func(result,save_mode)
