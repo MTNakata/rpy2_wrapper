@@ -8,7 +8,7 @@ Rpy2 documentation: http://rpy2.readthedocs.io/en/version_2.8.x/
 ### Topics
 
 1. Purpose
-2. What function is contained in rpy2_wrapper?
+2. What is contained in rpy2_wrapper?
 3. Building the development environment
 4. Test
 
@@ -16,11 +16,11 @@ Rpy2 documentation: http://rpy2.readthedocs.io/en/version_2.8.x/
 
 rpy2_wrapper makes six statistical functions of R available from Python programs.
 
-For statistical analysis, `scipy.stats` seems to be used generally in the Python field. rpy2_wrapper has been implemented for statistical functions which are not available in `scipy.stats`.
+For statistical analysis, scipy.stats is generally used in the Python field. rpy2_wrapper has been implemented for statistical functions which are not available in scipy.stats.
 
-# 2. What function is contained in rpy2_wrapper?
+# 2. What is contained in rpy2_wrapper?
 
-The statistical functions included in rpy2_wrapper are listed below.
+The statistical functions in rpy2_wrapper are listed below.
 
 Function (R code)
 

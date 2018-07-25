@@ -1,0 +1,82 @@
+test.txt
+
+-------------Result of ANOVA-------------
+ Analysis of Variance Table
+
+Response: data.5
+           Df  Sum Sq Mean Sq F value    Pr(>F)    
+label_data  3 242.366  80.789  85.096 7.973e-11 ***
+Residuals  18  17.089   0.949                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+-------------Result of ANOVA-------------
+ Analysis of Variance Table
+
+Response: data.5
+           Df  Sum Sq Mean Sq F value    Pr(>F)    
+label_data  3 242.366  80.789  85.096 7.973e-11 ***
+Residuals  18  17.089   0.949                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+-------------Result of TukeyHSD test-------------
+
+           diff         lwr        upr        p adj
+B-A -9.1000000 -10.9473264 -7.2526736 2.573011e-10
+C-A -7.5000000  -9.4472530 -5.5527470 1.350361e-08
+D-A -8.6111111 -10.2659580 -6.9562643 1.042004e-10
+C-B  1.6000000  -0.2473264  3.4473264 1.033965e-01
+D-B  0.4888889  -1.0471250  2.0249028 8.051780e-01
+D-C -1.1111111  -2.7659580  0.5437357 2.637763e-01
+
+-------------Result of Welch's ANOVA-------------
+ 
+	One-way analysis of means (not assuming equal variances)
+
+data:  data.5 and label_data
+F = 46.424, num df = 3.0000, denom df = 7.7012, p-value = 2.777e-05
+
+
+-------------Result of ANOVA-------------
+ Analysis of Variance Table
+
+Response: data.5
+           Df  Sum Sq Mean Sq F value    Pr(>F)    
+label_data  3 242.366  80.789  85.096 7.973e-11 ***
+Residuals  18  17.089   0.949                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+-------------Result of Dunnett's test-------------
+
+        Estimate  Std. Error    t value      Pr(>|t|)
+B - A -9.100000    0.653622 -13.922412  1.110223e-16
+C - A -7.500000    0.688978 -10.885681  6.891931e-12
+D - A -8.611111    0.585519 -14.706797  1.110223e-16 
+
+-------------Result of Fisher's Exact test-------------
+ 
+	Fisher's Exact Test for Count Data
+
+data:  
+p-value = 0.002194
+alternative hypothesis: two.sided
+
+
+-------------Result of Steel-Dwass test-------------
+
+ Ties are present, so p-values are based on conditional null distribution. 
+Group sizes: 4 5 4 
+Using the Monte Carlo (with 10000 Iterations) method: 
+ 
+For treatments A - B, the Dwass, Steel, Critchlow-Fligner W Statistic is -3.5233. 
+The smallest experimentwise error rate leading to rejection is 0.0135 .
+  
+For treatments A - C, the Dwass, Steel, Critchlow-Fligner W Statistic is -3.2856. 
+The smallest experimentwise error rate leading to rejection is 0.0487 .
+  
+For treatments B - C, the Dwass, Steel, Critchlow-Fligner W Statistic is 3.0895. 
+The smallest experimentwise error rate leading to rejection is 0.0691 .
+  
+
