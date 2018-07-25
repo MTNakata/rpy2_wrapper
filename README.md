@@ -14,9 +14,7 @@ Rpy2 documentation: http://rpy2.readthedocs.io/en/version_2.8.x/
 
 # 1. Purpose
 
-rpy2_wrapper makes six statistical functions of R available from Python programs.
-
-For statistical analysis, scipy.stats is generally used in the Python field. rpy2_wrapper has been implemented for statistical functions which are not available in scipy.stats.
+rpy2_wrapper makes six statistical functions of R available from Python programs. For statistical analysis, scipy.stats is generally used in the Python field. rpy2_wrapper was implemented to supplement statistical functions not available in scipy.stats.
 
 # 2. What is contained in rpy2_wrapper?
 
@@ -33,6 +31,8 @@ Function (R code)
 
 `multicomp`: https://cran.r-project.org/web/packages/multcomp/index.html  
 `NSM3`: https://cran.r-project.org/web/packages/NSM3/index.html
+
+To understand how to use each function, see the contents of `examples.ipynb` on Jupyter notebook. There is also a method to save the output result as a text file without displaying it on the screen (see the contents of `save_test.ipynb`).
 
 # 3. Building the development environment
 
@@ -132,7 +132,7 @@ $ pip install rpy2
 $ pip install pandas
 ```
 
-### d. Install `rpy2_wrapper`
+### d. Install rpy2_wrapper
 
 Move to the appropriate directory with `cd` command and run `git clone`.
 
@@ -149,6 +149,4 @@ For the test, enter the `rpy2_wrapper` directory and run `examples.py` on Termin
 ```
 $ python examples.py
 ```
-
-To understand how to use each function, see `examples.ipynb` on Jupyter notebook. There is also a method to save the output result as a text file without displaying it on the screen (see `save_test.ipynb`).
 
