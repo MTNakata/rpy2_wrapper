@@ -36,7 +36,7 @@ Function (R code)
 
 You can find some examples to use the functions in the [examples.ipynb](https://github.com/MTNakata/rpy2_wrapper/blob/master/examples.ipynb). 
 
-To save the results, only the setting of `save_file` is needed ([save_test.ipynb](https://github.com/MTNakata/rpy2_wrapper/blob/master/save_test.ipynb)).
+To save the results, only the setting of `save_file` is needed. Examples are shown in [save_test.ipynb](https://github.com/MTNakata/rpy2_wrapper/blob/master/save_test.ipynb).
 
 # 4. Building the development environment
 
