@@ -141,7 +141,7 @@ $ pip install pandas
 Move to the appropriate directory with `cd` command and run `git clone`.
 
 ```
-$ git clone https://github.com/MTNakata/rpy2_wrapper/
+$ git clone https://github.com/MTNakata/rpy2_wrapper.git
 ```
 
 Then the `rpy2_wrapper` directory starts to be downloaded. You can find a source code of the main program (`rpy2_wrapper.py`) and several sample programs/files (`examples.py`, `examples.ipynb`, `sample_data.csv` etc.) in the directory.
