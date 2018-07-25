@@ -1,26 +1,26 @@
 # 0. Introduction
 
-`rpy2_wrapper` is a module for calling several R statistical functions from Python programs. `rpy2_wrapper` has been implemented as a wrapper for the Rpy2 package.
+rpy2_wrapper is a module for calling several R statistical functions from Python programs. rpy2_wrapper has been implemented as a wrapper for the Rpy2 package.
 
-Rpy2: https://rpy2.bitbucket.io
+Rpy2: https://rpy2.bitbucket.io  
 Rpy2 documentation: http://rpy2.readthedocs.io/en/version_2.8.x/
 
 ### Topics
 
 1. Purpose
-2. What function is contained in `rpy2_wrapper`?
+2. What function is contained in rpy2_wrapper?
 3. Building the development environment
 4. Test
 
 # 1. Purpose
 
-When statistically analyzing with Python, `scipy.stats` seems to be used generally (me too!). Although `scipy.stats` is very useful, some statistical functions are not available.
+rpy2_wrapper makes six statistical functions of R available from Python programs.
 
-`rpy2_wrapper` has made some of R's statistical functions available from Python programs. Functions of the famous R packages have been used by many users already. In addition, `Rpy2` package enables us to access all of R functions. `rpy2_wrapper` is a wrapper for `Rpy2` which summarizes some statistical functions of R.
+For statistical analysis, `scipy.stats` seems to be used generally in the Python field. rpy2_wrapper has been implemented for statistical functions which are not available in `scipy.stats`.
 
-# 2. What function is contained in `rpy2_wrapper`?
+# 2. What function is contained in rpy2_wrapper?
 
-The statistical functions which `rpy2_wrapper` includes are listed below.
+The statistical functions included in rpy2_wrapper are listed below.
 
 Function (R code)
 
@@ -31,7 +31,7 @@ Function (R code)
 - Steel-Dwass test (`pSDCFlig` function with `method="Monte Carlo"` from `NSM3`)
 - Fisher's Exact Test (`fisher.test` function)
 
-`multicomp`: https://cran.r-project.org/web/packages/multcomp/index.html
+`multicomp`: https://cran.r-project.org/web/packages/multcomp/index.html  
 `NSM3`: https://cran.r-project.org/web/packages/NSM3/index.html
 
 # 3. Building the development environment
@@ -53,7 +53,7 @@ Function (R code)
 - multcomp
 - NSM3
 
-### a. Install R with `homebrew`
+### a. Install R with homebrew
 
 First of all, install the package manager for MacOS `homebrew` according to the following URL.
 
