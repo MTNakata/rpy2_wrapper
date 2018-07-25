@@ -9,8 +9,8 @@ Rpy2 documentation: http://rpy2.readthedocs.io/en/version_2.8.x/
 
 1. Purpose
 2. What is contained in rpy2_wrapper?
-3. Building the development environment
-4. Test
+3. Examples
+4. Building the development environment
 
 # 1. Purpose
 
@@ -32,9 +32,13 @@ Function (R code)
 `multicomp`: https://cran.r-project.org/web/packages/multcomp/index.html  
 `NSM3`: https://cran.r-project.org/web/packages/NSM3/index.html
 
-To understand how to use each function, see the contents of `examples.ipynb` on Jupyter notebook. There is also a method to save the output result as a text file without displaying it on the screen (see the contents of `save_test.ipynb`).
+# 3. Examples
 
-# 3. Building the development environment
+You can find some examples to use the functions in the [examples.ipynb](https://github.com/MTNakata/rpy2_wrapper/blob/master/examples.ipynb). 
+
+To save the results, only the setting of `save_file` is needed ([save_test.ipynb](https://github.com/MTNakata/rpy2_wrapper/blob/master/save_test.ipynb)).
+
+# 4. Building the development environment
 
 ### Our Development Environment
 
@@ -142,7 +146,7 @@ $ git clone https://github.com/MTNakata/rpy2_wrapper/
 
 Then the `rpy2_wrapper` directory starts to be downloaded. You can find a source code of the main program (`rpy2_wrapper.py`) and several sample programs/files (`examples.py`, `examples.ipynb`, `sample_data.csv` etc.) in the directory.
 
-# 4. Test
+### e. Test
 
 For the test, enter the `rpy2_wrapper` directory and run `examples.py` on Terminal.
 
