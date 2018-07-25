@@ -1,6 +1,6 @@
 # 0. Introduction
 
-rpy2_wrapper is a module for calling several R statistical functions from Python programs. rpy2_wrapper has been implemented as a wrapper for the Rpy2 package.
+rpy2_wrapper is a module to use several R statistical functions from Python programs. rpy2_wrapper has been implemented as a wrapper for the Rpy2 package.
 
 Rpy2: https://rpy2.bitbucket.io  
 Rpy2 documentation: http://rpy2.readthedocs.io/en/version_2.8.x/
@@ -149,3 +149,6 @@ For the test, enter the `rpy2_wrapper` directory and run `examples.py` on Termin
 ```
 $ python examples.py
 ```
+
+To understand how to use each function, see `examples.ipynb` on Jupyter notebook. There is also a method to save the output result as a text file without displaying it on the screen (see `save_test.ipynb`).
+

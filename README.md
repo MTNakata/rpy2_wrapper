@@ -149,3 +149,6 @@ For the test, enter the `rpy2_wrapper` directory and run `examples.py` on Termin
 ```
 $ python examples.py
 ```
+
+To understand how to use each function, see `examples.ipynb` on Jupyter notebook. There is also a method to save the output result as a text file without displaying it on the screen (see `save_test.ipynb`).
+
