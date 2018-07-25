@@ -116,7 +116,7 @@ class R:
                                                         label_column=label_column,
                                                         save_file=save_file)
         result = ["-------------Result of Steel-Dwass test-------------\n\n",
-                  self.r.pSDCFlig(data, label_data, method="Monte Carlo")]
+                  self.r.pSDCFlig(data, label_data)]
         self.print_func(result)
         
     def rsource_file_import(self,source_file="",save_file=""):

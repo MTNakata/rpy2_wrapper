@@ -26,7 +26,7 @@ Function (R code)
 - Tukey-Kramer test (`TukeyHSD` function)
 - Welch's ANOVA (`oneway.test` function with `var.equal=False`)
 - Dunnett's test (`glht` function from `multcomp`)
-- Steel-Dwass test (`pSDCFlig` function with `method="Monte Carlo"` from `NSM3`)
+- Steel-Dwass test (`pSDCFlig` function from `NSM3`)
 - Fisher's Exact Test (`fisher.test` function)
 
 `multicomp`: https://cran.r-project.org/web/packages/multcomp/index.html  
@@ -36,7 +36,7 @@ Function (R code)
 
 You can find some examples to use the functions in the [examples.ipynb](https://github.com/MTNakata/rpy2_wrapper/blob/master/examples.ipynb). 
 
-To save the results, only the setting of `save_file` is needed ([save_test.ipynb](https://github.com/MTNakata/rpy2_wrapper/blob/master/save_test.ipynb)).
+To save the results, only the setting of `save_file` is needed. Examples are shown in [save_test.ipynb](https://github.com/MTNakata/rpy2_wrapper/blob/master/save_test.ipynb).
 
 # 4. Building the development environment
 
@@ -141,7 +141,7 @@ $ pip install pandas
 Move to the appropriate directory with `cd` command and run `git clone`.
 
 ```
-$ git clone https://github.com/MTNakata/rpy2_wrapper/
+$ git clone https://github.com/MTNakata/rpy2_wrapper.git
 ```
 
 Then the `rpy2_wrapper` directory starts to be downloaded. You can find a source code of the main program (`rpy2_wrapper.py`) and several sample programs/files (`examples.py`, `examples.ipynb`, `sample_data.csv` etc.) in the directory.
